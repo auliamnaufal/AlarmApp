@@ -15,4 +15,7 @@
     <string name="txt_add_set_alarm">Add Set Alarm</string>
     <string name="txt_cancel_set_alarm">Cancel Set Alarm</string>
     <string name="txt_input_note">Input Your Note</string>
+    <string name="content_image_icon_one_time_alarm">Image Icon One Time Alarm</string>
+    <string name="txt_date">Date</string>
+    <string name="txt_time">Time</string>
 </resources>

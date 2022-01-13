@@ -14,5 +14,6 @@
     <color name="orange">#ffc657</color>
     <color name="gray">#ebe9f5</color>
     <color name="lightBlue">#eff1ff</color>
+    <color name="textGrey">#80FFFFFF</color>
 
 </resources>

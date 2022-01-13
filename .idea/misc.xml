@@ -4,12 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.24074074074074073" />
+        <entry key="app/src/main/res/drawable/bg_rounded_blue.xml" value="0.26481481481481484" />
         <entry key="app/src/main/res/drawable/bg_rounded_gradient_orange.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/drawable/bg_rounded_gradient_purple.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/drawable/bg_rounded_white.xml" value="0.31145833333333334" />
+        <entry key="app/src/main/res/drawable/bg_rounded_white_stroke.xml" value="0.26481481481481484" />
         <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/drawable/switch_track.xml" value="0.17395833333333333" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22467294040409763" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20715701834058375" />
+        <entry key="app/src/main/res/layout/activity_one_time_alarm.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_row_reminder_alarm.xml" value="0.1503623188405797" />
       </map>
     </option>

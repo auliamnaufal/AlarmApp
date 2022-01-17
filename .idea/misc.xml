@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/drawable/switch_track.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20715701834058375" />
         <entry key="app/src/main/res/layout/activity_one_time_alarm.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_repeating_alarm.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_row_reminder_alarm.xml" value="0.1503623188405797" />
       </map>
     </option>

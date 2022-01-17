@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartAlarm">
         <activity
+            android:name=".RepeatingAlarmActivity"
+            android:exported="true" />
+        <activity
             android:name=".OneTimeAlarmActivity"
             android:exported="true" />
         <activity

@@ -38,7 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_hello" />
 
-        <TextView
+        <TextClock
             android:id="@+id/tv_time_today"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,9 +48,11 @@
             android:text="@string/txt_time_today"
             android:textColor="@color/white"
             android:textSize="60sp"
+            android:format12Hour="hh:mm"
+            android:format24Hour="HH:mm"
             app:layout_constraintTop_toBottomOf="@id/tv_welcome" />
 
-        <TextView
+        <TextClock
             android:id="@+id/tv_date_today"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,6 +62,8 @@
             android:text="@string/txt_date_today"
             android:textColor="#80FFFFFF"
             android:textSize="18sp"
+            android:format12Hour="EEEE, d MMM yyyy"
+            android:format24Hour="EEEE, d MMM yyyy"
             app:layout_constraintTop_toBottomOf="@id/tv_time_today" />
 
         <View

@@ -1,5 +1,6 @@
 package com.auliamnaufal.smartalarm
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.auliamnaufal.smartalarm.databinding.ActivityMainBinding
@@ -15,11 +16,25 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        initTimeToday()
-        initDateToday()
+//        initTimeToday()
+//        initDateToday()
+        initView()
     }
 
-    private fun initDateToday() {
+    private fun initView() {
+        binding.apply {
+            cvSetOneTimeAlarm.setOnClickListener {
+                startActivity(Intent(this@MainActivity, OneTimeAlarmActivity::class.java))
+            }
+
+            cvSetRepeatingAlarm.setOnClickListener {
+                startActivity(Intent(this@MainActivity, RepeatingAlarmActivity::class.java))
+            }
+        }
+    }
+
+    // Di comment karena pakai textclock
+    /*private fun initDateToday() {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("EEEE, d MMM yyyy", Locale.getDefault())
         val formattedDate = dateFormat.format(calendar.time)
@@ -34,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         val timeFormat = SimpleDateFormat("hh:mm aa", Locale.getDefault())
         val formattedTime = timeFormat.format(calendar.time)
         binding.tvTimeToday.text = formattedTime
-    }
+    }*/
 
 
 }

@@ -1,4 +1,4 @@
-package com.auliamnaufal.smartalarm
+package com.auliamnaufal.smartalarm.fragment
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -6,7 +6,6 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
-import kotlinx.android.synthetic.main.activity_one_time_alarm.*
 import java.util.*
 
 class DateDialogFragment: DialogFragment(), DatePickerDialog.OnDateSetListener {

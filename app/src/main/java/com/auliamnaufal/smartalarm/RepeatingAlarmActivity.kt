@@ -3,6 +3,7 @@ package com.auliamnaufal.smartalarm
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.auliamnaufal.smartalarm.databinding.ActivityRepeatingAlarmBinding
+import com.auliamnaufal.smartalarm.fragment.TimeDialogFragment
 import com.auliamnaufal.smartalarm.helper.timeFormatter
 
 class RepeatingAlarmActivity : AppCompatActivity(), TimeDialogFragment.TimeDialogListener {

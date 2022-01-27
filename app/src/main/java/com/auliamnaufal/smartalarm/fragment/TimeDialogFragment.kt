@@ -1,4 +1,4 @@
-package com.auliamnaufal.smartalarm
+package com.auliamnaufal.smartalarm.fragment
 
 import android.app.Dialog
 import android.app.TimePickerDialog

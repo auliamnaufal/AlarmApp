@@ -3,8 +3,11 @@ package com.auliamnaufal.smartalarm
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.auliamnaufal.smartalarm.adapter.AlarmAdapter
 import com.auliamnaufal.smartalarm.data.Alarm
 import com.auliamnaufal.smartalarm.data.local.AlarmDB
@@ -37,11 +40,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        CoroutineScope(Dispatchers.IO).launch {
-            val alarm = db.alarmDao().getAlarm()
-            alarmAdapter?.setData(alarm)
-            Log.i("GetAlarm", "SetupRecylerView: With this data $alarm")
+
+        db.alarmDao().getAlarm().observe(this) {
+            alarmAdapter?.setData(it)
+            Log.i("GetAlarm", "SetupRecylerView: With this data $it")
         }
+
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val alarm = db.alarmDao().getAlarm()
+//            withContext(Dispatchers.Main) {
+//                alarmAdapter?.setData(alarm)
+//            }
+//        }
     }
 
     private fun setupRecyclerView() {
@@ -51,6 +61,8 @@ class MainActivity : AppCompatActivity() {
                 layoutManager = LinearLayoutManager(context)
                 adapter = alarmAdapter
             }
+
+            swipeToDelete(rvReminderAlarm)
         }
     }
 
@@ -64,6 +76,34 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, RepeatingAlarmActivity::class.java))
             }
         }
+    }
+
+    private fun swipeToDelete(recyclerView: RecyclerView) {
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val deletedItem = alarmAdapter?.listAlarm?.get(viewHolder.adapterPosition)
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    deletedItem?.let { db.alarmDao().deleteAlarm(it) }
+                    Log.i("onSwipe", "OnSwipe: Alarm item successfully deleted")
+                }
+                Toast.makeText(applicationContext, "Item Deleted", Toast.LENGTH_SHORT).show()
+
+//                alarmAdapter?.notifyItemRemoved(viewHolder.adapterPosition)
+            }
+
+        }).attachToRecyclerView(recyclerView)
     }
 
     // Di comment karena pakai textclock

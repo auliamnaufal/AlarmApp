@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.auliamnaufal.smartalarm.AlarmReceiver
+import com.auliamnaufal.smartalarm.R
 import com.auliamnaufal.smartalarm.data.Alarm
 import com.auliamnaufal.smartalarm.databinding.ItemRowReminderAlarmBinding
 import java.util.ArrayList
@@ -27,6 +29,11 @@ class AlarmAdapter : RecyclerView.Adapter<AlarmAdapter.MyViewHolder>() {
             itemDateAlarm.text = alarm.date
             itemTimeAlarm.text = alarm.time
             itemNoteAlarm.text = alarm.message
+            if (alarm.type == AlarmReceiver.TYPE_ONE_TIME) {
+                itemImgOneTime.setImageResource(R.drawable.ic_one_time)
+            } else {
+                itemImgOneTime.setImageResource(R.drawable.ic_repeating)
+            }
         }
     }
 
@@ -40,6 +47,5 @@ class AlarmAdapter : RecyclerView.Adapter<AlarmAdapter.MyViewHolder>() {
         diffUtilResult.dispatchUpdatesTo(this)
 //        notifyDataSetChanged()
     }
-
 
 }

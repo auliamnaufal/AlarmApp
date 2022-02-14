@@ -20,11 +20,14 @@ class RepeatingAlarmActivity : AppCompatActivity(), TimeDialogFragment.TimeDialo
 
     private val db by lazy { AlarmDB(this) }
 
+    private var alarmService: AlarmReceiver? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         _binding = ActivityRepeatingAlarmBinding.inflate(layoutInflater)
+        alarmService = AlarmReceiver()
 
         setContentView(binding.root)
 
@@ -46,6 +49,12 @@ class RepeatingAlarmActivity : AppCompatActivity(), TimeDialogFragment.TimeDialo
                     ).show()
 
                 } else {
+                    alarmService?.setRepeatingAlarm(
+                        applicationContext,
+                        AlarmReceiver.TYPE_REPEATING,
+                        time,
+                        message
+                    )
 
                     CoroutineScope(Dispatchers.IO).launch {
                         db.alarmDao().addAlarm(
@@ -53,7 +62,8 @@ class RepeatingAlarmActivity : AppCompatActivity(), TimeDialogFragment.TimeDialo
                                 0,
                                 "Repeating Alarm",
                                 time,
-                                message
+                                message,
+                                AlarmReceiver.TYPE_REPEATING
                             )
                         )
                         Log.i("AddAlarm", "Alarm set on: $time with message $message")

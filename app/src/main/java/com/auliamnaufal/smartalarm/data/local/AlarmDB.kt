@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.auliamnaufal.smartalarm.data.Alarm
 
-@Database(entities = [Alarm::class], version = 1)
+@Database(entities = [Alarm::class], version = 2)
 abstract class AlarmDB: RoomDatabase() {
     abstract fun alarmDao() : AlarmDao
 
@@ -23,6 +23,7 @@ abstract class AlarmDB: RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context, AlarmDB::class.java, "smart_alarm.db")
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }

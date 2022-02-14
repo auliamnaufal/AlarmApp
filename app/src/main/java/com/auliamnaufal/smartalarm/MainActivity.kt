@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding as ActivityMainBinding
 
     private var alarmAdapter: AlarmAdapter? = null
+    private var alarmReceiver: AlarmReceiver? = null
 
     private val db by lazy { AlarmDB(this) }
 
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        alarmReceiver = AlarmReceiver()
 
 //        initTimeToday()
 //        initDateToday()
@@ -98,7 +100,8 @@ class MainActivity : AppCompatActivity() {
                     deletedItem?.let { db.alarmDao().deleteAlarm(it) }
                     Log.i("onSwipe", "OnSwipe: Alarm item successfully deleted")
                 }
-                Toast.makeText(applicationContext, "Item Deleted", Toast.LENGTH_SHORT).show()
+                deletedItem?.type?.let { alarmReceiver?.cancelAlarm(applicationContext, it) }
+
 
 //                alarmAdapter?.notifyItemRemoved(viewHolder.adapterPosition)
             }

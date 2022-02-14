@@ -21,6 +21,7 @@ class OneTimeAlarmActivity : AppCompatActivity(), DateDialogFragment.DialogDateS
 
     private var _binding: ActivityOneTimeAlarmBinding? = null
     private val binding get() = _binding as ActivityOneTimeAlarmBinding
+    private var alarmService: AlarmReceiver? = null
 
     private val db by lazy { AlarmDB(this) }
 
@@ -30,6 +31,7 @@ class OneTimeAlarmActivity : AppCompatActivity(), DateDialogFragment.DialogDateS
         _binding = ActivityOneTimeAlarmBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        alarmService = AlarmReceiver()
         initView()
     }
 
@@ -58,6 +60,13 @@ class OneTimeAlarmActivity : AppCompatActivity(), DateDialogFragment.DialogDateS
                     ).show()
 
                 } else {
+                    alarmService?.setOneTimeAlarm(
+                        applicationContext,
+                        AlarmReceiver.TYPE_ONE_TIME,
+                        date,
+                        time,
+                        message,
+                    )
 
                     CoroutineScope(Dispatchers.IO).launch {
                         db.alarmDao().addAlarm(
@@ -65,12 +74,14 @@ class OneTimeAlarmActivity : AppCompatActivity(), DateDialogFragment.DialogDateS
                                 0,
                                 date,
                                 time,
-                                message
+                                message,
+                                AlarmReceiver.TYPE_ONE_TIME
                             )
                         )
-                        Log.i("AddAlarm", "Alarm set on: $date $time with message $message")
-                        finish()
                     }
+
+                    Log.i("AddAlarm", "Alarm set on: $date $time with message $message")
+                    finish()
                 }
 
             }
